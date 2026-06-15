@@ -20,7 +20,7 @@ export default function Navbar() {
 
             <div className="flex items-center gap-2">
               <Mail size={14} />
-              <span>{COMPANY.emails[0]}</span>
+              <span>{COMPANY.email[0]}</span>
             </div>
           </div>
 
@@ -35,9 +35,10 @@ export default function Navbar() {
           <Image
             src="/Rorilex.png"
             alt={COMPANY.name}
-            width={55}
-            height={55}
+            width={60}
+            height={60}
             priority
+            className="h-auto"
           />
 
           <div className="leading-tight">
@@ -45,7 +46,7 @@ export default function Navbar() {
               Rorilex Technical Solutions
             </h1>
             <p className="text-xs text-slate-500">
-              QUALITY PRODUCT. RELIABLE SUPPORT. LASTING SOLUTIONS
+              LASTING SOLUTIONS. RELIABLE SUPPORT. QUALITY PRODUCT
             </p>
           </div>
         </Link>
@@ -55,8 +56,9 @@ export default function Navbar() {
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
           <Link href="/services">Services</Link>
+          <Link href="/industries">Industries</Link>
+          <Link href="/projects">Projects</Link>
           <Link href="/products">Products</Link>
-          <Link href="/portfolio">Portfolio</Link>
           <Link href="/contact">Contact</Link>
         </nav>
 

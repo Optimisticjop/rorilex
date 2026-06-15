@@ -1,49 +1,15 @@
-import {
-  Wrench,
-  Shield,
-  Cpu,
-  Boxes,
-  Settings,
-  GraduationCap,
-} from "lucide-react";
-
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
-const services = [
-  {
-    icon: Wrench,
-    title: "Industrial Maintenance",
-    desc: "Preventive and corrective maintenance for industrial equipment and systems.",
-  },
-  {
-    icon: Shield,
-    title: "CCTV & Security Systems",
-    desc: "Installation and configuration of modern security and surveillance systems.",
-  },
-  {
-    icon: Boxes,
-    title: "General Merchandise Supply",
-    desc: "Supply of office, electrical, mechanical and industrial equipment.",
-  },
-  {
-    icon: Cpu,
-    title: "Technical Consultancy",
-    desc: "Expert engineering advice and technical project planning support.",
-  },
-  {
-    icon: Settings,
-    title: "Equipment Installation",
-    desc: "Professional setup and commissioning of industrial equipment.",
-  },
-  {
-    icon: GraduationCap,
-    title: "Training Services",
-    desc: "Technical training for staff and operational teams.",
-  },
-];
+import { getFeaturedServices } from "@/lib/actions/services";
+import { serviceIcons } from "@/lib/constants/service-icons";
 
-export default function Services() {
+import { Wrench } from "lucide-react";
+
+export default async function Services() {
+  const services = await getFeaturedServices();
+  // console.log("SERVICES FROM DB:", services);
+
   return (
     <section className="bg-white py-24">
       <div className="mx-auto max-w-7xl px-4">
@@ -64,13 +30,13 @@ export default function Services() {
         </div>
 
         {/* GRID */}
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, i) => {
-            const Icon = service.icon;
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {services.map((service) => {
+            const Icon = serviceIcons[service.title] || Wrench;
 
             return (
               <div
-                key={i}
+                key={service.id}
                 className="group border border-slate-200 rounded-xl p-6 hover:shadow-xl hover:-translate-y-1 transition duration-300 bg-white"
               >
                 {/* ICON */}
@@ -83,7 +49,7 @@ export default function Services() {
 
                 {/* DESCRIPTION */}
                 <p className="text-slate-500 text-sm leading-relaxed">
-                  {service.desc}
+                  {service.description}
                 </p>
 
                 {/* CTA */}

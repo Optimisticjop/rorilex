@@ -15,8 +15,8 @@ export default function Footer() {
             <h3 className="mb-4 text-xl font-bold">{COMPANY.name}</h3>
 
             <p className="text-slate-400">
-              Delivering reliable procurement, technical support, maintenance
-              and industrial solutions across Ghana.
+              Delivering reliable Industrial Maintenance & Engineering Solutions
+              across Ghana.
             </p>
           </div>
 
@@ -48,6 +48,12 @@ export default function Footer() {
                 <Link href="/services">Services</Link>
               </li>
               <li>
+                <Link href="/industries">Industries</Link>
+              </li>
+              <li>
+                <Link href="/projects">Projects</Link>
+              </li>
+              <li>
                 <Link href="/products">Products</Link>
               </li>
               <li>
@@ -68,7 +74,7 @@ export default function Footer() {
 
               <div className="flex gap-2">
                 <Mail size={16} />
-                <span>{COMPANY.emails[0]}</span>
+                <span>{COMPANY.email[0]}</span>
               </div>
 
               <div className="flex gap-2">

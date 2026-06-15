@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, ShieldCheck, Wrench } from "lucide-react";
+import { COMPANY } from "@/lib/constants/company";
 
 export default function Hero() {
   return (
@@ -12,25 +13,24 @@ export default function Hero() {
         {/* LEFT */}
         <div className="space-y-8">
           {/* TAGLINE */}
-          <div className="space-y-3">
-            <p className="text-sky-400 tracking-widest uppercase text-xs">
-              QUALITY PRODUCT • RELIABLE SUPPORT • LASTING SOLUTIONS
+          <div className="space-y-4">
+            <p className="text-sky-400 tracking-[0.25em] uppercase text-xs">
+              {COMPANY.slogan}
             </p>
 
             <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-              Reliable Engineering
-              <span className="text-sky-400"> Procurement &</span>
+              Industrial Maintenance,
+              <span className="text-sky-400"> Engineering &</span>
               <br />
-              Solutions You Can Trust
+              Technical Solutions
             </h1>
-          </div>
 
-          {/* DESCRIPTION */}
-          <p className="text-slate-300 text-lg leading-relaxed max-w-xl">
-            We deliver industrial equipment, technical support, maintenance
-            services and procurement solutions across Ghana with speed,
-            reliability and professionalism.
-          </p>
+            <p className="text-slate-300 text-lg leading-relaxed max-w-xl">
+              Delivering industrial maintenance, engineering, construction,
+              software, security and procurement solutions across Ghana and West
+              Africa.
+            </p>
+          </div>
 
           {/* CTA */}
           <div className="flex flex-wrap items-center gap-4 pt-2">
@@ -83,11 +83,11 @@ export default function Hero() {
             </h3>
 
             <ul className="space-y-4 text-slate-200">
-              <li>✔ General Merchandise Supply</li>
+              <li>✔ Industrial Maintenance Services</li>
+              <li>✔ Machinery Installation</li>
+              <li>✔ Structural Engineering</li>
               <li>✔ CCTV & Security Systems</li>
-              <li>✔ Industrial Maintenance</li>
-              <li>✔ Equipment Procurement</li>
-              <li>✔ Technical Consultancy</li>
+              <li>✔ Software Development</li>
             </ul>
 
             <div className="mt-8 p-4 rounded-lg bg-slate-900 border border-slate-700 text-sm text-slate-300">
