@@ -3,9 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, Phone, Mail, MessageCircle } from "lucide-react";
+import { Menu, X, Phone, Mail, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { COMPANY } from "@/lib/constants/company";
+
 
 export default function Navbar() {
 
@@ -78,11 +79,15 @@ export default function Navbar() {
         </div>
 
         {/* MOBILE MENU */}
-        <button className="lg:hidden" onClick={() => setOpen(!open)}>
-          <Menu />
+        <button
+          className="lg:hidden p-2 rounded-lg border border-slate-200"
+          onClick={() => setOpen(!open)}
+          aria-label="Toggle Menu"
+        >
+          {open ? <X size={22} /> : <Menu size={22} />}
         </button>
 
-        {open && (
+        {/* {open && (
           <div className="lg:hidden border-t">
             <nav className="flex flex-col p-4 gap-4">
               <Link href="/">Home</Link>
@@ -94,7 +99,54 @@ export default function Navbar() {
               <Link href="/contact">Contact</Link>
             </nav>
           </div>
-        )}
+        )} */}
+
+        {/* MOBILE MENU */}
+        <div
+          className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            open ? "max-h-[500px] border-t" : "max-h-0"
+          }`}
+        >
+          <nav className="bg-white shadow-lg">
+            <div className="flex flex-col p-5 gap-5 text-sm font-medium">
+              <Link href="/" onClick={() => setOpen(false)}>
+                Home
+              </Link>
+
+              <Link href="/about" onClick={() => setOpen(false)}>
+                About
+              </Link>
+
+              <Link href="/services" onClick={() => setOpen(false)}>
+                Services
+              </Link>
+
+              <Link href="/industries" onClick={() => setOpen(false)}>
+                Industries
+              </Link>
+
+              <Link href="/projects" onClick={() => setOpen(false)}>
+                Projects
+              </Link>
+
+              <Link href="/products" onClick={() => setOpen(false)}>
+                Products
+              </Link>
+
+              <Link href="/contact" onClick={() => setOpen(false)}>
+                Contact
+              </Link>
+
+              <div className="pt-3 border-t">
+                <Button asChild className="w-full">
+                  <Link href="/quote" onClick={() => setOpen(false)}>
+                    Request Quote
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </nav>
+        </div>
       </div>
     </header>
   );
