@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, Phone, Mail, MessageCircle } from "lucide-react";
@@ -7,6 +8,9 @@ import { Button } from "@/components/ui/button";
 import { COMPANY } from "@/lib/constants/company";
 
 export default function Navbar() {
+
+  const [open, setOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
       {/* TOP BAR */}
@@ -20,7 +24,7 @@ export default function Navbar() {
 
             <div className="flex items-center gap-2">
               <Mail size={14} />
-              <span>{COMPANY.email[0]}</span>
+              <span>{COMPANY.email}</span>
             </div>
           </div>
 
@@ -74,9 +78,23 @@ export default function Navbar() {
         </div>
 
         {/* MOBILE MENU */}
-        <button className="lg:hidden">
+        <button className="lg:hidden" onClick={() => setOpen(!open)}>
           <Menu />
         </button>
+
+        {open && (
+          <div className="lg:hidden border-t">
+            <nav className="flex flex-col p-4 gap-4">
+              <Link href="/">Home</Link>
+              <Link href="/about">About</Link>
+              <Link href="/services">Services</Link>
+              <Link href="/industries">Industries</Link>
+              <Link href="/projects">Projects</Link>
+              <Link href="/products">Products</Link>
+              <Link href="/contact">Contact</Link>
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   );

@@ -74,7 +74,7 @@ export default function Footer() {
 
               <div className="flex gap-2">
                 <Mail size={16} />
-                <span>{COMPANY.email[0]}</span>
+                <span>{COMPANY.email}</span>
               </div>
 
               <div className="flex gap-2">
