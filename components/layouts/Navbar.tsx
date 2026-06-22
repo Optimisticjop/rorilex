@@ -36,14 +36,34 @@ export default function Navbar() {
       {/* MAIN NAV */}
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
         {/* LOGO */}
+        {/* <Link href="/" className="flex items-center gap-3">
+          <Image
+            src="/Rorilex.png"
+            alt={COMPANY.name}
+            width={50}
+            height={50}
+            priority
+            className="h-auto"
+          />
+
+          <div className="leading-tight">
+            <h1 className="text-base font-bold text-slate-900">
+              Rorilex Technical Solutions
+            </h1>
+            <p className="text-xs text-slate-500">
+              LASTING SOLUTIONS. RELIABLE SUPPORT. QUALITY PRODUCT
+            </p>
+          </div>
+        </Link> */}
+
         <Link href="/" className="flex items-center gap-3">
           <Image
             src="/Rorilex.png"
             alt={COMPANY.name}
-            width={60}
-            height={60}
+            width={100}
+            height={100}
             priority
-            className="h-auto"
+            className="object-contain"
           />
 
           <div className="leading-tight">
@@ -78,72 +98,88 @@ export default function Navbar() {
           </Button>
         </div>
 
-        {/* MOBILE MENU */}
+        {/* MOBILE MENU BUTTON */}
         <button
-          className="lg:hidden p-2 rounded-lg border border-slate-200"
+          className="lg:hidden ml-auto p-2 rounded-xl border border-slate-200 bg-white shadow-sm hover:bg-slate-50 transition"
           onClick={() => setOpen(!open)}
           aria-label="Toggle Menu"
         >
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
+      </div>
 
-        {/* {open && (
-          <div className="lg:hidden border-t">
-            <nav className="flex flex-col p-4 gap-4">
-              <Link href="/">Home</Link>
-              <Link href="/about">About</Link>
-              <Link href="/services">Services</Link>
-              <Link href="/industries">Industries</Link>
-              <Link href="/projects">Projects</Link>
-              <Link href="/products">Products</Link>
-              <Link href="/contact">Contact</Link>
-            </nav>
-          </div>
-        )} */}
-
-        {/* MOBILE MENU */}
+      {/* MOBILE MENU OVERLAY */}
+      <div
+        className={`lg:hidden fixed inset-0 z-40 transition-all duration-300 ${
+          open
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+      >
+        {/* Backdrop */}
         <div
-          className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-            open ? "max-h-[500px] border-t" : "max-h-0"
+          className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+          onClick={() => setOpen(false)}
+        />
+
+        {/* Slide Panel */}
+        <div
+          className={`absolute top-0 right-0 h-full w-72 bg-white shadow-2xl transition-transform duration-300 ${
+            open ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <nav className="bg-white shadow-lg">
-            <div className="flex flex-col p-5 gap-5 text-sm font-medium">
-              <Link href="/" onClick={() => setOpen(false)}>
-                Home
-              </Link>
+          {/* Header */}
+          <div className="flex items-center justify-between p-5 border-b">
+            <h3 className="font-semibold text-slate-900">RORILEX</h3>
 
-              <Link href="/about" onClick={() => setOpen(false)}>
-                About
-              </Link>
+            <button
+              onClick={() => setOpen(false)}
+              className="p-2 rounded-lg hover:bg-slate-100 transition"
+            >
+              <X size={20} />
+            </button>
+          </div>
 
-              <Link href="/services" onClick={() => setOpen(false)}>
-                Services
+          {/* Links */}
+          <nav className="flex flex-col p-5">
+            {[
+              { href: "/", label: "Home" },
+              { href: "/about", label: "About" },
+              { href: "/services", label: "Services" },
+              { href: "/industries", label: "Industries" },
+              { href: "/projects", label: "Projects" },
+              { href: "/products", label: "Products" },
+              { href: "/contact", label: "Contact" },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="
+                  py-3 px-4
+                  rounded-lg
+                  text-slate-700
+                  font-medium
+                  hover:bg-sky-50
+                  hover:text-sky-600
+                  transition-all duration-200
+                "
+              >
+                {item.label}
               </Link>
+            ))}
 
-              <Link href="/industries" onClick={() => setOpen(false)}>
-                Industries
-              </Link>
+            <div className="mt-6 pt-6 border-t">
+              <Button asChild className="w-full">
+                <Link href="/quote" onClick={() => setOpen(false)}>
+                  Request Quote
+                </Link>
+              </Button>
+            </div>
 
-              <Link href="/projects" onClick={() => setOpen(false)}>
-                Projects
-              </Link>
-
-              <Link href="/products" onClick={() => setOpen(false)}>
-                Products
-              </Link>
-
-              <Link href="/contact" onClick={() => setOpen(false)}>
-                Contact
-              </Link>
-
-              <div className="pt-3 border-t">
-                <Button asChild className="w-full">
-                  <Link href="/quote" onClick={() => setOpen(false)}>
-                    Request Quote
-                  </Link>
-                </Button>
-              </div>
+            <div className="mt-6 text-sm text-slate-500">
+              <p>{COMPANY.phones[0]}</p>
+              <p>{COMPANY.email}</p>
             </div>
           </nav>
         </div>
