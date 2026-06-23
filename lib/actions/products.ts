@@ -1,12 +1,64 @@
-import { createClient } from "@/lib/supabase/server";
+"use server";
 
-export async function getProducts() {
+import { createClient } from "@/lib/supabase/server";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+
+export async function createProduct(formData: FormData) {
+  const supabase = await createClient();
+
+  const title = formData.get("title") as string;
+
+  const slug = title
+    .toLowerCase()
+    .replaceAll(" ", "-")
+    .replace(/[^\w-]+/g, "");
+
+  const { error } = await supabase.from("products").insert({
+    title,
+    slug,
+    category: formData.get("category"),
+    description: formData.get("description"),
+    price: Number(formData.get("price")),
+    stock: Number(formData.get("stock")),
+    is_featured: formData.get("is_featured") === "on",
+  });
+
+  if (error) {
+    console.error(error);
+    throw new Error(error.message);
+  }
+
+  revalidatePath("/products");
+  revalidatePath("/");
+
+  redirect("/admin/products");
+}
+
+export async function getAllProducts() {
   const supabase = await createClient();
 
   const { data, error } = await supabase
     .from("products")
     .select("*")
-    .order("created_at");
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error(error);
+    return [];
+  }
+
+  return data;
+}
+
+export async function getFeaturedProducts() {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .eq("is_featured", true)
+    .limit(4);
 
   if (error) {
     console.error(error);

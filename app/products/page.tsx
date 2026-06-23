@@ -1,41 +1,30 @@
-import { getProducts } from "@/lib/actions/products";
+import Link from "next/link";
+import { getAllProducts } from "@/lib/actions/products";
 
 export default async function ProductsPage() {
-  const products = await getProducts();
+  const products = await getAllProducts();
 
   return (
-    <>
-      <section className="bg-slate-950 text-white py-24">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold">Products</h1>
+    <div className="max-w-7xl mx-auto px-4 py-20">
+      <h1 className="text-4xl font-bold mb-12">Products</h1>
 
-          <p className="mt-6 text-slate-300">
-            Industrial and engineering supplies.
-          </p>
-        </div>
-      </section>
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {products.map((product: any) => (
+          <Link
+            key={product.id}
+            href={`/products/${product.slug}`}
+            className="border rounded-xl p-5 hover:shadow-lg transition"
+          >
+            <div className="h-48 bg-slate-100 rounded-lg mb-4" />
 
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4">
-          {products.length === 0 ? (
-            <div className="text-center text-slate-500">
-              No products added yet.
-            </div>
-          ) : (
-            <div className="grid lg:grid-cols-4 gap-8">
-              {products.map((product) => (
-                <div key={product.id} className="border rounded-xl p-6">
-                  <h3 className="font-semibold">{product.name}</h3>
+            <h3 className="font-semibold">{product.title}</h3>
 
-                  <p className="text-sm text-slate-500 mt-3">
-                    {product.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      </section>
-    </>
+            <p className="text-sm text-sky-600">{product.category}</p>
+
+            <p className="text-sm text-slate-500 mt-2">{product.description}</p>
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 }

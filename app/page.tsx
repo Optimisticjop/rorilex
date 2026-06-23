@@ -3,6 +3,8 @@ import Services from "@/components/sections/Services";
 import Industries from "@/components/sections/Industries";
 import Features from "@/components/sections/Features";
 import CTA from "@/components/sections/CTA";
+import FeaturedProducts from "@/components/home/featured-products";
+// import Projects from "@/components/home/projects";
 
 export default function Home() {
   return (
@@ -10,6 +12,8 @@ export default function Home() {
       <Hero />
       <Services />
       <Industries />
+      <FeaturedProducts />
+      {/* <Projects /> */}
       <Features />
       <CTA />
     </main>
