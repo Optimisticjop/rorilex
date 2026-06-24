@@ -3,9 +3,18 @@
 import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { uploadImage } from "./upload";
 
 export async function createProduct(formData: FormData) {
   const supabase = await createClient();
+
+  const imageFile = formData.get("image") as File;
+
+  let imageUrl = null;
+
+  if (imageFile && imageFile.size > 0) {
+    imageUrl = await uploadImage(imageFile, "products");
+  }
 
   const title = formData.get("title") as string;
 
@@ -21,6 +30,7 @@ export async function createProduct(formData: FormData) {
     description: formData.get("description"),
     price: Number(formData.get("price")),
     stock: Number(formData.get("stock")),
+    image_url: imageUrl,
     is_featured: formData.get("is_featured") === "on",
   });
 
@@ -66,4 +76,39 @@ export async function getFeaturedProducts() {
   }
 
   return data;
+}
+
+export async function updateProduct(id: string, formData: FormData) {
+  const supabase = await createClient();
+
+  const { error } = await supabase
+    .from("products")
+    .update({
+      title: formData.get("title"),
+      client_name: formData.get("client_name"),
+      description: formData.get("description"),
+      location: formData.get("location"),
+      is_featured: formData.get("is_featured") === "on",
+    })
+    .eq("id", id);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  revalidatePath("/products");
+  revalidatePath("/admin/products");
+}
+
+export async function deleteProduct(id: string) {
+  const supabase = await createClient();
+
+  const { error } = await supabase.from("products").delete().eq("id", id);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  revalidatePath("/products");
+  revalidatePath("/admin/products");
 }

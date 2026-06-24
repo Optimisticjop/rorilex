@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getAllProducts } from "@/lib/actions/products";
+import Image from "next/image";
 
 export default async function ProductsPage() {
   const products = await getAllProducts();
@@ -16,6 +17,13 @@ export default async function ProductsPage() {
             className="border rounded-xl p-5 hover:shadow-lg transition"
           >
             <div className="h-48 bg-slate-100 rounded-lg mb-4" />
+            <Image
+              src={product.image_url}
+              alt={product.title}
+              width={500}
+              height={300}
+              className="w-full h-52 object-cover rounded-xl mb-4"
+            />
 
             <h3 className="font-semibold">{product.title}</h3>
 

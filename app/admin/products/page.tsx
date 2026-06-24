@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getAllProducts } from "@/lib/actions/products";
+import Image from "next/image";
 
 export default async function ProductsAdminPage() {
   const products = await getAllProducts();
@@ -20,6 +21,7 @@ export default async function ProductsAdminPage() {
       <table className="w-full border">
         <thead>
           <tr className="bg-slate-100">
+            <th className="p-3 text-left">Image</th>
             <th className="p-3 text-left">Product</th>
             <th className="p-3 text-left">Category</th>
             <th className="p-3 text-left">Stock</th>
@@ -30,6 +32,17 @@ export default async function ProductsAdminPage() {
         <tbody>
           {products.map((product: any) => (
             <tr key={product.id} className="border-t">
+              <td className="p-3">
+                {product.image_url && (
+                  <Image
+                    src={product.image_url}
+                    alt={product.title}
+                    width={80}
+                    height={80}
+                    className="rounded-lg object-cover"
+                  />
+                )}
+              </td>
               <td className="p-3">{product.title}</td>
               <td className="p-3">{product.category}</td>
               <td className="p-3">{product.stock}</td>

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { getProjects } from "@/lib/actions/projects";
+import Image from "next/image";
+import DeleteButton from "./delete-button";
 
 export default async function AdminProjectsPage() {
   const projects = await getProjects();
@@ -21,32 +23,49 @@ export default async function AdminProjectsPage() {
         <table className="w-full">
           <thead className="bg-slate-100">
             <tr>
+              <th className="text-left p-4">Image</th>
               <th className="text-left p-4">Title</th>
               <th className="text-left p-4">Client</th>
               <th className="text-left p-4">Location</th>
               <th className="text-left p-4">Featured</th>
+              <th className="p-4">Actions</th>
             </tr>
           </thead>
 
           <tbody>
             {projects.map((project) => (
               <tr key={project.id} className="border-t">
+                <td className="p-4">
+                  {project.image_url && (
+                    <Image
+                      src={project.image_url}
+                      alt={project.title}
+                      width={80}
+                      height={80}
+                      className="rounded-lg object-cover"
+                    />
+                  )}
+                </td>
                 <td className="p-4">{project.title}</td>
 
                 <td className="p-4">{project.client_name}</td>
 
                 <td className="p-4">{project.location}</td>
 
-                <td className="p-4">{project.is_featured ? "✅" : "ALONE"}</td>
+                <td className="p-4">{project.is_featured ? "✅" : "❌"}</td>
 
-                <Link
-                  href={`/admin/projects/${project.id}`}
-                  className="text-sky-600"
-                >
-                  Edit
-                </Link>
+                <td className="p-4">
+                  <div className="flex gap-4">
+                    <Link
+                      href={`/admin/projects/${project.id}`}
+                      className="text-sky-600"
+                    >
+                      Edit
+                    </Link>
 
-                <button>Delete</button>
+                    <DeleteButton id={project.id} />
+                  </div>
+                </td>
               </tr>
             ))}
           </tbody>

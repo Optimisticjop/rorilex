@@ -1,45 +1,33 @@
-import { getAllServices } from "@/lib/actions/services";
-import { serviceIcons } from "@/lib/constants/service-icons";
-import { Wrench } from "lucide-react";
+import { getServices } from "@/lib/actions/services";
 
 export default async function ServicesPage() {
-  const services = await getAllServices();
+  const services = await getServices();
 
   return (
-    <>
-      <section className="bg-slate-950 text-white py-24">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold">Our Services</h1>
+    <div className="max-w-7xl mx-auto px-4 py-20">
+      <div className="mb-12">
+        <h1 className="text-5xl font-bold mb-4">Our Services</h1>
 
-          <p className="mt-6 text-slate-300">
-            Comprehensive engineering and technical solutions.
-          </p>
-        </div>
-      </section>
+        <p className="text-slate-600">
+          Technical support, industrial solutions, engineering services and
+          project execution.
+        </p>
+      </div>
 
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service) => {
-              const Icon =
-                serviceIcons[service.title as keyof typeof serviceIcons] ||
-                Wrench;
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {services.map((service: any) => (
+          <div
+            key={service.id}
+            className="border rounded-2xl p-6 bg-white shadow-sm"
+          >
+            <div className="text-3xl mb-4">{service.icon}</div>
 
-              return (
-                <div key={service.id} className="border rounded-xl p-6">
-                  <Icon className="mb-4 text-sky-600" />
+            <h2 className="text-xl font-semibold mb-3">{service.title}</h2>
 
-                  <h3 className="font-semibold mb-3">{service.title}</h3>
-
-                  <p className="text-slate-600 text-sm">
-                    {service.description}
-                  </p>
-                </div>
-              );
-            })}
+            <p className="text-slate-600">{service.short_description}</p>
           </div>
-        </div>
-      </section>
-    </>
+        ))}
+      </div>
+    </div>
   );
 }

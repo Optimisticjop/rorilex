@@ -40,6 +40,13 @@ export default function NewProductPage() {
           className="w-full border rounded-lg p-3"
         />
 
+        <input
+          type="file"
+          name="image"
+          accept="image/*"
+          className="w-full border rounded-lg p-3"
+        />
+
         <label className="flex gap-2">
           <input type="checkbox" name="is_featured" />
           Featured Product
