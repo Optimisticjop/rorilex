@@ -1,21 +1,24 @@
 import Link from "next/link";
+import { requireAdmin } from "@/lib/auth/admin";
+import { logout } from "@/lib/actions/logout";
 
-export default function AdminLayout({
+export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const user = await requireAdmin();
   const links = [
     {
       name: "Dashboard",
       href: "/admin",
     },
     {
-      name: "Quotes",
+      name: "Quote Requests",
       href: "/admin/quotes",
     },
     {
-      name: "Messages",
+      name: "Contact Messages",
       href: "/admin/messages",
     },
     {
@@ -58,12 +61,34 @@ export default function AdminLayout({
       {/* CONTENT */}
       <div className="flex-1">
         {/* TOPBAR */}
-        <header className="bg-white border-b px-6 py-4 flex justify-between items-center">
+        {/* <header className="bg-white border-b px-6 py-4 flex justify-between items-center">
           <h2 className="font-semibold text-lg">Rorilex Admin</h2>
 
           <Link href="/" className="text-sky-600 font-medium">
             View Website →
           </Link>
+        </header> */}
+        <header className="bg-white border-b px-6 py-4 flex justify-between items-center">
+          <div>
+            <h2 className="font-semibold text-lg">RORILEX</h2>
+
+            <p className="text-sm text-slate-500">{user.email}</p>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <Link href="/" className="text-sky-600 font-medium">
+              View Website
+            </Link>
+
+            <form action={logout}>
+              <button
+                type="submit"
+                className="bg-red-600 text-white px-4 py-2 rounded-lg"
+              >
+                Logout
+              </button>
+            </form>
+          </div>
         </header>
 
         <main className="p-6">{children}</main>

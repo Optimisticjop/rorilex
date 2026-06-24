@@ -153,8 +153,11 @@ export default async function AdminDashboard() {
             {latestProjects?.length ? (
               latestProjects.map((project: any) => (
                 <div key={project.id} className="border-b pb-2">
-                  <p className="font-medium">{project.full_name}</p>
-                  <p className="text-sm text-slate-500">{project.company}</p>
+                  <p className="font-medium">{project.title}</p>
+
+                  <p className="text-sm text-slate-500">
+                    {project.client_name}
+                  </p>
                 </div>
               ))
             ) : (

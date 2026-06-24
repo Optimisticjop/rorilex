@@ -34,6 +34,15 @@ export default async function ProductsAdminPage() {
               <td className="p-3">{product.category}</td>
               <td className="p-3">{product.stock}</td>
               <td className="p-3">{product.is_featured ? "✅" : "❌"}</td>
+
+              <Link
+                href={`/admin/products/${product.id}`}
+                className="text-sky-600"
+              >
+                Edit
+              </Link>
+
+              <button>Delete</button>
             </tr>
           ))}
         </tbody>

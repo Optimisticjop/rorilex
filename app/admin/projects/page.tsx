@@ -37,7 +37,16 @@ export default async function AdminProjectsPage() {
 
                 <td className="p-4">{project.location}</td>
 
-                <td className="p-4">{project.is_featured ? "✅" : "—"}</td>
+                <td className="p-4">{project.is_featured ? "✅" : "ALONE"}</td>
+
+                <Link
+                  href={`/admin/projects/${project.id}`}
+                  className="text-sky-600"
+                >
+                  Edit
+                </Link>
+
+                <button>Delete</button>
               </tr>
             ))}
           </tbody>
