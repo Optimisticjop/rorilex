@@ -3,7 +3,7 @@ export const COMPANY = {
 
   tagline: "Powering Your Business. Supporting Your Growth.",
 
-  slogan: "Lasting Solutions • Reliable Support • Quality Product.",
+  slogan: "Lasting Solutions • Reliable Support • Quality Products",
 
   address: "Post Box CO 343, Tema, Ghana",
 
