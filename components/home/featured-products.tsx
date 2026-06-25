@@ -1,8 +1,13 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getFeaturedProducts } from "@/lib/actions/products";
 
 export default async function FeaturedProducts() {
   const products = await getFeaturedProducts();
+
+  if (!products?.length) {
+    return null; // or a fallback UI
+  }
 
   return (
     <section className="py-24 bg-slate-50">
@@ -16,13 +21,30 @@ export default async function FeaturedProducts() {
             <Link
               key={product.id}
               href={`/products/${product.slug}`}
-              className="bg-white border rounded-xl p-5"
+              className="bg-white border rounded-xl overflow-hidden hover:shadow-lg transition"
             >
-              <div className="h-40 bg-slate-100 rounded-lg mb-4" />
+              {/* IMAGE */}
+              <div className="relative w-full h-48 bg-slate-100">
+                {product.image_url ? (
+                  <Image
+                    src={product.image_url}
+                    alt={product.title}
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="flex items-center justify-center h-full text-slate-400 text-sm">
+                    No image
+                  </div>
+                )}
+              </div>
 
-              <h3 className="font-semibold">{product.title}</h3>
+              {/* TEXT */}
+              <div className="p-5">
+                <h3 className="font-semibold">{product.title}</h3>
 
-              <p className="text-sm text-slate-500">{product.category}</p>
+                <p className="text-sm text-slate-500">{product.category}</p>
+              </div>
             </Link>
           ))}
         </div>

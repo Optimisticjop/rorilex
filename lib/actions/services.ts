@@ -59,3 +59,40 @@ export async function getFeaturedServices() {
 
   return data || [];
 }
+
+export async function updateService(id: string, formData: FormData) {
+  const supabase = await createClient();
+
+  const { error } = await supabase
+    .from("services")
+    .update({
+      title: formData.get("title"),
+      short_description: formData.get("short_description"),
+      icon: formData.get("icon"),
+      is_featured: formData.get("is_featured") === "on",
+    })
+    .eq("id", id);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  revalidatePath("/services");
+  revalidatePath("/admin/services");
+  redirect("/admin/services");
+}
+
+export async function deleteService(id: string) {
+  const supabase = await createClient();
+
+  const { error } = await supabase.from("services").delete().eq("id", id);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  revalidatePath("/services");
+  revalidatePath("/admin/services");
+
+  redirect("/admin/services");
+}

@@ -40,26 +40,6 @@ export default function Navbar() {
           <Image
             src="/Rorilex.png"
             alt={COMPANY.name}
-            width={50}
-            height={50}
-            priority
-            className="h-auto"
-          />
-
-          <div className="leading-tight">
-            <h1 className="text-base font-bold text-slate-900">
-              Rorilex Technical Solutions
-            </h1>
-            <p className="text-xs text-slate-500">
-              LASTING SOLUTIONS. RELIABLE SUPPORT. QUALITY PRODUCT
-            </p>
-          </div>
-        </Link> */}
-
-        <Link href="/" className="flex items-center gap-3">
-          <Image
-            src="/Rorilex.png"
-            alt={COMPANY.name}
             width={100}
             height={100}
             priority
@@ -72,6 +52,27 @@ export default function Navbar() {
             </h1>
             <p className="text-xs text-slate-500">
               LASTING SOLUTIONS. RELIABLE SUPPORT. QUALITY PRODUCT
+            </p>
+          </div>
+        </Link> */}
+
+        <Link href="/" className="flex items-center gap-4">
+          <Image
+            src="/Rorilex.png"
+            alt={COMPANY.name}
+            width={120}
+            height={120}
+            priority
+            className="object-contain"
+          />
+
+          <div>
+            <h1 className="text-xl lg:text-2xl font-extrabold text-slate-900">
+              RORILEX TECHNICAL SOLUTIONS
+            </h1>
+
+            <p className="text-sm text-slate-500 font-medium">
+              LASTING SOLUTIONS • RELIABLE SUPPORT • QUALITY PRODUCT
             </p>
           </div>
         </Link>

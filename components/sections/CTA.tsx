@@ -50,9 +50,13 @@ export default function CTA() {
         </div>
 
         {/* SUPPORT LINE */}
-        <p className="mt-10 text-sm text-slate-400">
-          Available Monday – Friday | 8:00 AM – 4:00 PM
-        </p>
+        <div className="mt-12">
+          <p className="text-xl font-semibold text-white">Business Hours</p>
+
+          <p className="text-lg text-slate-300 mt-2">Monday – Friday</p>
+
+          <p className="text-2xl font-bold text-sky-400">8:00 AM – 4:00 PM</p>
+        </div>
       </div>
     </section>
   );

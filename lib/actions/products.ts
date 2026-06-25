@@ -85,9 +85,9 @@ export async function updateProduct(id: string, formData: FormData) {
     .from("products")
     .update({
       title: formData.get("title"),
-      client_name: formData.get("client_name"),
+      category: formData.get("category"),
       description: formData.get("description"),
-      location: formData.get("location"),
+      stock: Number(formData.get("stock")),
       is_featured: formData.get("is_featured") === "on",
     })
     .eq("id", id);
@@ -98,6 +98,7 @@ export async function updateProduct(id: string, formData: FormData) {
 
   revalidatePath("/products");
   revalidatePath("/admin/products");
+  redirect("/admin/products");
 }
 
 export async function deleteProduct(id: string) {
@@ -111,4 +112,5 @@ export async function deleteProduct(id: string) {
 
   revalidatePath("/products");
   revalidatePath("/admin/products");
+  redirect("/admin/products");
 }

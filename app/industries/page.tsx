@@ -11,6 +11,8 @@ const industries = [
   "Educational Institutions",
 ];
 
+import { partners } from "@/lib/data/company";
+
 export default function IndustriesPage() {
   return (
     <>
@@ -23,6 +25,25 @@ export default function IndustriesPage() {
             technical support services to a wide range of industries across
             Ghana.
           </p>
+        </div>
+      </section>
+
+      <section className="py-20 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Technology Partners
+          </h2>
+
+          <div className="grid md:grid-cols-6 gap-6">
+            {partners.map((partner) => (
+              <div
+                key={partner}
+                className="border bg-white rounded-xl p-6 text-center"
+              >
+                {partner}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

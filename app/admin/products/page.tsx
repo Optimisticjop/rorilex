@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getAllProducts } from "@/lib/actions/products";
 import Image from "next/image";
+import DeleteButton from "./delete-button";
 
 export default async function ProductsAdminPage() {
   const products = await getAllProducts();
@@ -26,6 +27,7 @@ export default async function ProductsAdminPage() {
             <th className="p-3 text-left">Category</th>
             <th className="p-3 text-left">Stock</th>
             <th className="p-3 text-left">Featured</th>
+            <th className="p-4">Actions</th>
           </tr>
         </thead>
 
@@ -48,14 +50,18 @@ export default async function ProductsAdminPage() {
               <td className="p-3">{product.stock}</td>
               <td className="p-3">{product.is_featured ? "✅" : "❌"}</td>
 
-              <Link
-                href={`/admin/products/${product.id}`}
-                className="text-sky-600"
-              >
-                Edit
-              </Link>
+              <td className="p-4">
+                <div className="flex gap-4">
+                  <Link
+                    href={`/admin/products/${product.id}`}
+                    className="text-sky-600"
+                  >
+                    Edit
+                  </Link>
 
-              <button>Delete</button>
+                  <DeleteButton id={product.id} />
+                </div>
+              </td>
             </tr>
           ))}
         </tbody>

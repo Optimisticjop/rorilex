@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getServices } from "@/lib/actions/services";
 import Image from "next/image";
+import DeleteButton from "./delete-button";
 
 export default async function AdminServicesPage() {
   const services = await getServices();
@@ -27,6 +28,7 @@ export default async function AdminServicesPage() {
               <th className="p-4 text-left">Description</th>
               <th className="p-4 text-left">Icon</th>
               <th className="p-4 text-left">Featured</th>
+              <th className="p-4">Actions</th>
             </tr>
           </thead>
 
@@ -52,6 +54,19 @@ export default async function AdminServicesPage() {
                 <td className="p-4">{service.icon}</td>
 
                 <td className="p-4">{service.is_featured ? "✅" : "❌"}</td>
+
+                <td className="p-4">
+                  <div className="flex gap-4">
+                    <Link
+                      href={`/admin/services/${service.id}`}
+                      className="text-sky-600"
+                    >
+                      Edit
+                    </Link>
+
+                    <DeleteButton id={service.id} />
+                  </div>
+                </td>
               </tr>
             ))}
           </tbody>

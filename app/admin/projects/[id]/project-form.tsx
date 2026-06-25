@@ -7,8 +7,6 @@ export default function EditProjectForm({ project }: { project: any }) {
     await updateProject(project.id, formData);
   }
 
-  <form action={handleSubmit}></form>
-
   return (
     <div className="max-w-3xl mx-auto">
       <h1 className="text-3xl font-bold mb-8">Edit Project</h1>
@@ -54,6 +52,7 @@ export default function EditProjectForm({ project }: { project: any }) {
         >
           Update Project
         </button>
+        
       </form>
     </div>
   );

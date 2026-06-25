@@ -14,11 +14,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Rorilex Technical Solutions Ltd",
-  description: "Procurement, Technical Support & Industrial Solutions in Ghana",
-};
-
 export default function RootLayout({
   children,
 }: {
@@ -36,3 +31,32 @@ export default function RootLayout({
     </html>
   );
 }
+
+export const metadata = {
+  title: {
+    default: "Rorilex Technical Solutions Ltd",
+    template: "%s | Rorilex",
+  },
+
+  description:
+    "Engineering, procurement, industrial maintenance and technical support services in Ghana.",
+
+  keywords: [
+    "Industrial Services Ghana",
+    "Engineering Ghana",
+    "Procurement",
+    "Industrial Maintenance",
+    "Technical Support",
+    "Rorilex",
+  ],
+
+  openGraph: {
+    title: "Rorilex Technical Solutions Ltd",
+    description: "Industrial engineering and technical solutions provider.",
+    images: ["/og-image.jpg"],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+  },
+};

@@ -1,6 +1,7 @@
 "use server";
 
 import { createClient } from "@/lib/supabase/server";
+import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { uploadImage } from "./upload";
 
@@ -60,12 +61,9 @@ export async function getProjects() {
   return data;
 }
 
+
 export async function updateProject(id: string, formData: FormData) {
-  "use server";
-
   const supabase = await createClient();
-
-  console.log("TITLE:", formData.get("title"));
 
   const { error } = await supabase
     .from("projects")
@@ -79,12 +77,27 @@ export async function updateProject(id: string, formData: FormData) {
     .eq("id", id);
 
   if (error) {
-    console.log(error);
     throw new Error(error.message);
   }
 
+  const result = await supabase
+    .from("projects")
+    .update({
+      title: formData.get("title"),
+      client_name: formData.get("client_name"),
+      description: formData.get("description"),
+      location: formData.get("location"),
+      is_featured: formData.get("is_featured") === "on",
+    })
+    .eq("id", id)
+    .select();
+
+  console.log(result);
+
   revalidatePath("/admin/projects");
   revalidatePath("/projects");
+
+  redirect("/admin/projects");
 }
 
 export async function deleteProject(id: string) {
@@ -98,4 +111,6 @@ export async function deleteProject(id: string) {
 
   revalidatePath("/projects");
   revalidatePath("/admin/projects");
+
+  redirect("/admin/projects");
 }
