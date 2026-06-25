@@ -60,14 +60,14 @@ export default function Navbar() {
           <Image
             src="/Rorilex.png"
             alt={COMPANY.name}
-            width={120}
-            height={120}
+            width={100}
+            height={100}
             priority
             className="object-contain"
           />
 
           <div>
-            <h1 className="text-xl lg:text-2xl font-extrabold text-slate-900">
+            <h1 className="text-lg lg:text-xl font-extrabold text-slate-900">
               RORILEX TECHNICAL SOLUTIONS
             </h1>
 

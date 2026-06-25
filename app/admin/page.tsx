@@ -72,7 +72,8 @@ export default async function AdminDashboard() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
-      <h1 className="text-4xl font-bold mb-10">Admin Dashboard</h1>
+      {/* <h1 className="text-4xl font-bold mb-10">Admin Dashboard</h1> */}
+      <h1 className="text-3xl md:text-4xl font-bold mb-10">Admin Dashboard</h1>
 
       <div className="flex flex-wrap gap-4 mb-10">
         <Link
@@ -106,7 +107,11 @@ export default async function AdminDashboard() {
           >
             <p className="text-slate-500 text-sm">{item.title}</p>
 
-            <h2 className="text-4xl font-bold mt-2">{item.count}</h2>
+            {/* <h2 className="text-4xl font-bold mt-2">{item.count}</h2> */}
+
+            <h2 className="text-3xl md:text-4xl font-bold mt-2">
+              {item.count}
+            </h2>
           </Link>
         ))}
       </div>
