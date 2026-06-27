@@ -106,11 +106,14 @@ export async function deleteProduct(id: string) {
 
   const { error } = await supabase.from("products").delete().eq("id", id);
 
+  console.log("DELETE PRODUCT ERROR:", error);
+
   if (error) {
     throw new Error(error.message);
   }
 
   revalidatePath("/products");
   revalidatePath("/admin/products");
-  redirect("/admin/products");
+
+  return { success: true };
 }

@@ -87,6 +87,8 @@ export async function deleteService(id: string) {
 
   const { error } = await supabase.from("services").delete().eq("id", id);
 
+  console.log("DELETE SERVICE ERROR:", error);
+
   if (error) {
     throw new Error(error.message);
   }
@@ -94,5 +96,5 @@ export async function deleteService(id: string) {
   revalidatePath("/services");
   revalidatePath("/admin/services");
 
-  redirect("/admin/services");
+  return { success: true };
 }

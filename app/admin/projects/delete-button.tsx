@@ -1,8 +1,11 @@
 "use client";
 
 import { deleteProject } from "@/lib/actions/projects";
+import { useRouter } from "next/navigation";
 
 export default function DeleteButton({ id }: { id: string }) {
+  const router = useRouter();
+
   async function handleDelete() {
     const confirmed = confirm("Delete this project?");
 
@@ -10,7 +13,7 @@ export default function DeleteButton({ id }: { id: string }) {
 
     await deleteProject(id);
 
-    location.reload();
+    router.refresh();
   }
 
   return (
