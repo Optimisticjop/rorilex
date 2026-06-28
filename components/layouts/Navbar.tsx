@@ -149,7 +149,7 @@ export default function Navbar() {
               { href: "/services", label: "Services" },
               { href: "/industries", label: "Industries" },
               { href: "/projects", label: "Projects" },
-              { href: "/products", label: "Products" },
+              { href: "/products", label: "Products (PPE's)" },
               { href: "/contact", label: "Contact" },
             ].map((item) => (
               <Link

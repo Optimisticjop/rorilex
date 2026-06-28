@@ -9,10 +9,10 @@ export default async function ProductsPage() {
     <>
       <section className="bg-slate-950 text-white py-24">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold">Industrial Products</h1>
+          <h1 className="text-5xl font-bold">Industrial Products (PPE's)</h1>
 
           <p className="mt-6 text-slate-300 max-w-3xl mx-auto">
-            Supplying quality industrial equipment, spare parts and engineering
+            Supplying quality industrial PPE's and engineering
             materials for businesses across Ghana.
           </p>
         </div>

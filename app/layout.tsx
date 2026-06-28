@@ -44,7 +44,7 @@ export const metadata = {
   keywords: [
     "Industrial Services Ghana",
     "Engineering Ghana",
-    "Procurement",
+    "Procurement (PPE's)",
     "Industrial Maintenance",
     "Technical Support",
     "Rorilex",
