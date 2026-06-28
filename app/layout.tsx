@@ -38,6 +38,12 @@ export const metadata = {
     template: "%s | Rorilex",
   },
 
+  icons: {
+  icon: "/lex.png",
+  shortcut: "/lex.png",
+  apple: "/lex.png",
+},
+
   description:
     "Engineering, procurement, industrial maintenance and technical support services in Ghana.",
 
