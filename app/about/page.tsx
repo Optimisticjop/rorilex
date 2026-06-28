@@ -20,7 +20,7 @@ export default function AboutPage() {
 
           <p className="mt-6 max-w-3xl mx-auto text-slate-300">
             {COMPANY.name} delivers industrial maintenance, engineering,
-            construction, procurement and technical support services across
+            construction, procurement (PPE's) and technical support services across
             Ghana and West Africa.
           </p>
         </div>
@@ -34,7 +34,7 @@ export default function AboutPage() {
           <p className="text-slate-600 leading-8">
             Rorilex Technical Solutions Ltd provides industrial maintenance,
             machinery installation, structural engineering, software
-            development, technical consultancy and procurement solutions for
+            development, technical consultancy and procurement (PPE's) solutions for
             businesses, industries and institutions.
           </p>
         </div>

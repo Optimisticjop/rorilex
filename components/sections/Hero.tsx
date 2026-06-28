@@ -84,10 +84,12 @@ export default function Hero() {
 
             <ul className="space-y-4 text-slate-200">
               <li>✔ Industrial Maintenance Services</li>
-              <li>✔ Machinery Installation</li>
-              <li>✔ Structural Engineering</li>
-              <li>✔ CCTV & Security Systems</li>
-              <li>✔ Software Development</li>
+              <li>✔ Plant & Machinery Installation</li>
+              <li>✔ Maintenance Contracts & Technical Support</li>
+              <li>✔ Structural Engineering & Construction</li>
+              {/* <li>✔ CCTV & Security Systems</li> */}
+              <li>✔ Technical Consultancy & Training</li>
+              <li>✔ Software Development & Solutions</li>
             </ul>
 
             <div className="mt-8 p-4 rounded-lg bg-slate-900 border border-slate-700 text-sm text-slate-300">

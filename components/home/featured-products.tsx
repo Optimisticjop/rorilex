@@ -13,7 +13,7 @@ export default async function FeaturedProducts() {
     <section className="py-24 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-4xl font-bold text-center mb-12">
-          Featured Products
+          Featured Products(PPE's)
         </h2>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">

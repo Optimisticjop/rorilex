@@ -58,10 +58,10 @@ export default function Navbar() {
 
         <Link href="/" className="flex items-center gap-4">
           <Image
-            src="/Rorilex.png"
+            src="/lex.png"
             alt={COMPANY.name}
-            width={100}
-            height={100}
+            width={80}
+            height={80}
             priority
             className="object-contain"
           />
@@ -84,7 +84,7 @@ export default function Navbar() {
           <Link href="/services">Services</Link>
           <Link href="/industries">Industries</Link>
           <Link href="/projects">Projects</Link>
-          <Link href="/products">Products</Link>
+          <Link href="/products">Products(PPE's)</Link>
           <Link href="/contact">Contact</Link>
         </nav>
 
